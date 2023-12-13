@@ -14,9 +14,7 @@ _$VolumeEntityImpl _$$VolumeEntityImplFromJson(Map<String, dynamic> json) =>
           (json['authors'] as List<dynamic>?)?.map((e) => e as String).toList(),
       description: json['description'] as String?,
       publisher: json['publisher'] as String?,
-      publishedDate: json['publishedDate'] == null
-          ? null
-          : DateTime.parse(json['publishedDate'] as String),
+      publishedDate: json['publishedDate'] as String?,
       pageCount: json['pageCount'] as int?,
       imageLinks: json['imageLinks'] == null
           ? null
@@ -31,7 +29,7 @@ Map<String, dynamic> _$$VolumeEntityImplToJson(_$VolumeEntityImpl instance) =>
       'authors': instance.authors,
       'description': instance.description,
       'publisher': instance.publisher,
-      'publishedDate': instance.publishedDate?.toIso8601String(),
+      'publishedDate': instance.publishedDate,
       'pageCount': instance.pageCount,
       'imageLinks': instance.imageLinks?.toJson(),
     };

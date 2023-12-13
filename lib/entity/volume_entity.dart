@@ -17,7 +17,7 @@ class VolumeEntity with _$VolumeEntity {
     List<String>? authors,
     String? description,
     String? publisher,
-    DateTime? publishedDate,
+    String? publishedDate,
     int? pageCount,
     ImageLinksEntity? imageLinks,
   }) = _VolumeEntity;

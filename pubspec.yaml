@@ -20,6 +20,9 @@ dependencies:
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.1
 
+  # HTTP
+  dio: ^5.4.0
+
   # Firebase
   firebase_core: ^2.24.2
   firebase_auth: ^4.15.2
