@@ -42,9 +42,12 @@ class _MainTabViewState extends ConsumerState<MainTabView> {
             BottomNavigationBarItem(icon: Icon(CupertinoIcons.book)),
           ],
         ),
-        tabBuilder: (context, index) => CupertinoTabView(
-          navigatorKey: navKeys[index],
-          builder: (context) => tabViews[index],
+        tabBuilder: (context, index) => SafeArea(
+          top: false,
+          child: CupertinoTabView(
+            navigatorKey: navKeys[index],
+            builder: (context) => tabViews[index],
+          ),
         ),
       ),
     );
