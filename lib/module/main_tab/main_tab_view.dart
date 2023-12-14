@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:novelio/module/library/library_page.dart';
 
 /// メインタブナビゲーション
 class MainTabView extends ConsumerStatefulWidget {
@@ -14,7 +15,7 @@ class _MainTabViewState extends ConsumerState<MainTabView> {
   /// タブのルート画面リスト
   static const tabViews = [
     Scaffold(), // TODO implement
-    Scaffold(), // TODO implement
+    LibraryPage(), // TODO implement
   ];
 
   /// タブごとのナビゲーションキー

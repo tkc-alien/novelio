@@ -25,7 +25,7 @@ mixin _$VolumeEntity {
   List<String>? get authors => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get publisher => throw _privateConstructorUsedError;
-  DateTime? get publishedDate => throw _privateConstructorUsedError;
+  String? get publishedDate => throw _privateConstructorUsedError;
   int? get pageCount => throw _privateConstructorUsedError;
   ImageLinksEntity? get imageLinks => throw _privateConstructorUsedError;
 
@@ -47,7 +47,7 @@ abstract class $VolumeEntityCopyWith<$Res> {
       List<String>? authors,
       String? description,
       String? publisher,
-      DateTime? publishedDate,
+      String? publishedDate,
       int? pageCount,
       ImageLinksEntity? imageLinks});
 
@@ -100,7 +100,7 @@ class _$VolumeEntityCopyWithImpl<$Res, $Val extends VolumeEntity>
       publishedDate: freezed == publishedDate
           ? _value.publishedDate
           : publishedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       pageCount: freezed == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ abstract class _$$VolumeEntityImplCopyWith<$Res>
       List<String>? authors,
       String? description,
       String? publisher,
-      DateTime? publishedDate,
+      String? publishedDate,
       int? pageCount,
       ImageLinksEntity? imageLinks});
 
@@ -191,7 +191,7 @@ class __$$VolumeEntityImplCopyWithImpl<$Res>
       publishedDate: freezed == publishedDate
           ? _value.publishedDate
           : publishedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       pageCount: freezed == pageCount
           ? _value.pageCount
           : pageCount // ignore: cast_nullable_to_non_nullable
@@ -241,7 +241,7 @@ class _$VolumeEntityImpl implements _VolumeEntity {
   @override
   final String? publisher;
   @override
-  final DateTime? publishedDate;
+  final String? publishedDate;
   @override
   final int? pageCount;
   @override
@@ -307,7 +307,7 @@ abstract class _VolumeEntity implements VolumeEntity {
       final List<String>? authors,
       final String? description,
       final String? publisher,
-      final DateTime? publishedDate,
+      final String? publishedDate,
       final int? pageCount,
       final ImageLinksEntity? imageLinks}) = _$VolumeEntityImpl;
 
@@ -325,7 +325,7 @@ abstract class _VolumeEntity implements VolumeEntity {
   @override
   String? get publisher;
   @override
-  DateTime? get publishedDate;
+  String? get publishedDate;
   @override
   int? get pageCount;
   @override
