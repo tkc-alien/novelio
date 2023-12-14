@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:novelio/entity/book_entity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'form/book_get_list_request.dart';
@@ -32,9 +33,9 @@ class BookRepositoryImpl implements BookRepository {
   Future<BookGetResponse?> get(BookGetRequest request) async {
     try {
       final response = await dio.get("/volumes/${request.id}");
-      return BookGetResponse.fromJson(response.data as Map<String, dynamic>);
+      return BookGetResponse(item: BookEntity.fromJson(response.data as Map<String, dynamic>));
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint("BookRepository.get FAILED: $e");
       return null;
     }
   }
@@ -45,7 +46,7 @@ class BookRepositoryImpl implements BookRepository {
       final response = await dio.get("/volumes", queryParameters: request.toJson());
       return BookGetListResponse.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint("BookRepository.getList FAILED: $e");
       return null;
     }
   }
