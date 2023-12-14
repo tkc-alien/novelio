@@ -10,6 +10,7 @@ class AppColor {
   static const text = Color(0xff5a5a5a);
 
   static const progress = Color(0x20000000);
+  static const placeholder = Color(0xffcccccc);
 
   static const cardBackground = Color(0xffeeeeee);
   static const cardShadow = Color(0x12888888);

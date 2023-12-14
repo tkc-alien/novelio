@@ -36,8 +36,9 @@ class LibraryWishListTile extends ConsumerWidget {
           children: [
             Expanded(
               child: CachedNetworkImage(
-                imageUrl: model.imageUrl,
                 fit: BoxFit.fitHeight,
+                imageUrl: model.imageUrl,
+                placeholder: (context, _) => const Material(color: AppColor.placeholder),
               ),
             ),
             const Gap(8),
