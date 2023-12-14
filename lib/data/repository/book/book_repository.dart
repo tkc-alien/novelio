@@ -17,10 +17,10 @@ BookRepository bookRepository(BookRepositoryRef ref) => BookRepositoryImpl();
 /// 書籍情報を取得するリポジトリ
 abstract class BookRepository {
   /// 書籍情報を単一取得する
-  Future<BookGetResponse?> get(BookGetRequest request);
+  Future<BookGetResponse> get(BookGetRequest request);
 
   /// 書籍情報を検索・一括取得する
-  Future<BookGetListResponse?> getList(BookGetListRequest request);
+  Future<BookGetListResponse> getList(BookGetListRequest request);
 }
 
 /// [BookRepository]の実装クラス
@@ -30,24 +30,24 @@ class BookRepositoryImpl implements BookRepository {
   final dio = Dio(BaseOptions(baseUrl: "https://www.googleapis.com/books/v1"));
 
   @override
-  Future<BookGetResponse?> get(BookGetRequest request) async {
+  Future<BookGetResponse> get(BookGetRequest request) async {
     try {
       final response = await dio.get("/volumes/${request.id}");
       return BookGetResponse(item: BookEntity.fromJson(response.data as Map<String, dynamic>));
     } catch (e) {
       debugPrint("BookRepository.get FAILED: $e");
-      return null;
+      rethrow;
     }
   }
 
   @override
-  Future<BookGetListResponse?> getList(BookGetListRequest request) async {
+  Future<BookGetListResponse> getList(BookGetListRequest request) async {
     try {
       final response = await dio.get("/volumes", queryParameters: request.toJson());
       return BookGetListResponse.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       debugPrint("BookRepository.getList FAILED: $e");
-      return null;
+      rethrow;
     }
   }
 }

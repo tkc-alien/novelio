@@ -16,7 +16,7 @@ LibraryRepository libraryRepository(LibraryRepositoryRef ref) => LibraryReposito
 /// ライブラリ情報を取得・更新するリポジトリ
 abstract class LibraryRepository {
   /// ライブラリ情報を取得する
-  Future<LibraryGetResponse?> get(LibraryGetRequest request);
+  Future<LibraryGetResponse> get(LibraryGetRequest request);
 }
 
 /// [LibraryRepository]の実装クラス
@@ -27,7 +27,7 @@ class LibraryRepositoryImpl implements LibraryRepository {
   final uid = FirebaseAuth.instance.currentUser?.uid;
 
   @override
-  Future<LibraryGetResponse?> get(LibraryGetRequest request) async {
+  Future<LibraryGetResponse> get(LibraryGetRequest request) async {
     try {
       // ドキュメント取得
       final snapshot = await ref.doc("test-user-uid").get();
@@ -43,7 +43,7 @@ class LibraryRepositoryImpl implements LibraryRepository {
       }
     } catch (e) {
       debugPrint("LibraryRepository.get FAILED: $e");
-      return null;
+      rethrow;
     }
   }
 }

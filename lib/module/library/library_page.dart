@@ -18,6 +18,8 @@ class LibraryPage extends ConsumerWidget {
     final notifier = ref.watch(libraryNotifierProvider);
     return Scaffold(
       body: notifier.when(
+        loading: _buildLoading,
+        error: (error, _) => _buildError(context, ref),
         data: (state) => CustomScrollView(
           slivers: [
             const SliverSafeArea(sliver: SliverGap(16)),
@@ -49,17 +51,37 @@ class LibraryPage extends ConsumerWidget {
             const SliverGap(60),
           ],
         ),
-        error: (error, _) => const Center(child: Text("読み込みに失敗しました", style: AppTextStyle.title)),
-        loading: () => Center(
-          child: LoadingAnimationWidget.staggeredDotsWave(
-            color: AppColor.progress,
-            size: 48,
-          ),
-        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: ref.read(libraryNotifierProvider.notifier).onPressedFloatingAction,
         child: const Icon(CupertinoIcons.create_solid),
+      ),
+    );
+  }
+
+  /// 読み込み中のボディをビルドする
+  Widget _buildLoading() {
+    return Center(
+      child: LoadingAnimationWidget.staggeredDotsWave(
+        color: AppColor.progress,
+        size: 48,
+      ),
+    );
+  }
+
+  /// エラー発生時のボディをビルドする
+  Widget _buildError(BuildContext context, WidgetRef ref) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text("読み込みに失敗しました", style: AppTextStyle.title),
+          const Gap(16),
+          ElevatedButton(
+            onPressed: ref.read(libraryNotifierProvider.notifier).retry,
+            child: const Text("リトライ"),
+          ),
+        ],
       ),
     );
   }

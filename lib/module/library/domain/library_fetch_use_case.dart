@@ -52,14 +52,6 @@ class LibraryFetchUseCaseImpl implements LibraryFetchUseCase {
   Future<LibraryFetchUseCaseOutput> call(LibraryFetchUseCaseInput input) async {
     // ライブラリ情報を取得
     final libraryResponse = await libraryRepository.get(const LibraryGetRequest(orderBy: ""));
-    // 情報が取得できなければエラーを含めて返却する
-    if (libraryResponse == null) {
-      return const LibraryFetchUseCaseOutput(
-        historyList: [],
-        wishList: [],
-        error: "ライブラリを取得できませんでした。",
-      );
-    }
     // 書籍情報取得
     final historyList = await _mapHistoryToBook(libraryResponse.data);
     final wishList = await _mapWishToBook(libraryResponse.data);

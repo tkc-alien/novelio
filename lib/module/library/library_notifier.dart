@@ -34,6 +34,12 @@ class LibraryNotifier extends _$LibraryNotifier {
     );
   }
 
+  /// ライブラリ情報取得をリトライする
+  void retry() async {
+    state = const AsyncLoading();
+    ref.invalidateSelf();
+  }
+
   /// 読みたい本リストの表示用モデルを取得する
   LibraryWishListTileModel getWishModel(int index) {
     final input = LibraryConvertWishModelUseCaseInput(book: state.value!.wishList[index]);
