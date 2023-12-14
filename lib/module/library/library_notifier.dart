@@ -23,23 +23,11 @@ class LibraryNotifier extends _$LibraryNotifier {
       ref.read(libraryConvertHistoryModelUseCaseProvider);
 
   @override
-  LibraryState build() {
-    // 情報取得
-    fetch();
-    // 初期状態を返却
-    return const LibraryState(
-      wishList: [],
-      historyList: [],
-      error: null,
-    );
-  }
-
-  /// 読んだ本情報を取得する
-  void fetch() async {
+  Future<LibraryState> build() async {
     // 取得
     final response = await _fetchUseCase.call(LibraryFetchUseCaseInput());
     // 状態を更新
-    state = state.copyWith(
+    return LibraryState(
       wishList: response.wishList,
       historyList: response.historyList,
       error: response.error,
@@ -48,14 +36,14 @@ class LibraryNotifier extends _$LibraryNotifier {
 
   /// 読みたい本リストの表示用モデルを取得する
   LibraryWishListTileModel getWishModel(int index) {
-    return _convertWishModelUseCase.call(LibraryConvertWishModelUseCaseInput(book: state.wishList[index])).model;
+    final input = LibraryConvertWishModelUseCaseInput(book: state.value!.wishList[index]);
+    return _convertWishModelUseCase.call(input).model;
   }
 
   /// 読んだ本リストの表示用モデルを取得する
   LibraryHistoryListTileModel getHistoryModel(int index) {
-    return _convertHistoryModelUseCase
-        .call(LibraryConvertHistoryModelUseCaseInput(book: state.historyList[index]))
-        .model;
+    final input = LibraryConvertHistoryModelUseCaseInput(book: state.value!.historyList[index]);
+    return _convertHistoryModelUseCase.call(input).model;
   }
 
   /// FloatingActionButtonのハンドラ

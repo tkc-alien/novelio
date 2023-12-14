@@ -5,10 +5,20 @@ import 'package:novelio/module/library/library_notifier.dart';
 
 /// ライブラリ画面：読んだ本リスト
 class LibraryHistoryListView extends ConsumerWidget {
-  const LibraryHistoryListView({super.key});
+  const LibraryHistoryListView({super.key, required this.itemCount});
+
+  final int itemCount;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    if (itemCount <= 0) {
+      return const SliverToBoxAdapter(
+        child: Center(
+          child: Text("データがありません"),
+        ),
+      );
+    }
+
     return SliverGrid(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 8,
@@ -21,7 +31,7 @@ class LibraryHistoryListView extends ConsumerWidget {
           model: ref.watch(libraryNotifierProvider.notifier).getHistoryModel(index),
           onTap: () => ref.read(libraryNotifierProvider.notifier).onTapHistoryListTile(index),
         ),
-        childCount: ref.watch(libraryNotifierProvider.select((value) => value.historyList.length)),
+        childCount: itemCount,
       ),
     );
   }
