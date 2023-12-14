@@ -13,7 +13,7 @@ class LibraryWishListView extends ConsumerWidget {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      itemCount: 5,
+      itemCount: ref.watch(libraryNotifierProvider.select((value) => value.wishList.length)),
       itemBuilder: (context, index) => LibraryWishListTile(
         model: ref.watch(libraryNotifierProvider.notifier).getWishModel(index),
         onTap: () => ref.read(libraryNotifierProvider.notifier).onTapWishListTile(index),

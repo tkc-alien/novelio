@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LibraryState {
   List<BookEntity> get wishList => throw _privateConstructorUsedError;
   List<BookEntity> get historyList => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LibraryStateCopyWith<LibraryState> get copyWith =>
@@ -30,7 +31,8 @@ abstract class $LibraryStateCopyWith<$Res> {
           LibraryState value, $Res Function(LibraryState) then) =
       _$LibraryStateCopyWithImpl<$Res, LibraryState>;
   @useResult
-  $Res call({List<BookEntity> wishList, List<BookEntity> historyList});
+  $Res call(
+      {List<BookEntity> wishList, List<BookEntity> historyList, String? error});
 }
 
 /// @nodoc
@@ -48,6 +50,7 @@ class _$LibraryStateCopyWithImpl<$Res, $Val extends LibraryState>
   $Res call({
     Object? wishList = null,
     Object? historyList = null,
+    Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       wishList: null == wishList
@@ -58,6 +61,10 @@ class _$LibraryStateCopyWithImpl<$Res, $Val extends LibraryState>
           ? _value.historyList
           : historyList // ignore: cast_nullable_to_non_nullable
               as List<BookEntity>,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -70,7 +77,8 @@ abstract class _$$LibraryStateImplCopyWith<$Res>
       __$$LibraryStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<BookEntity> wishList, List<BookEntity> historyList});
+  $Res call(
+      {List<BookEntity> wishList, List<BookEntity> historyList, String? error});
 }
 
 /// @nodoc
@@ -86,6 +94,7 @@ class __$$LibraryStateImplCopyWithImpl<$Res>
   $Res call({
     Object? wishList = null,
     Object? historyList = null,
+    Object? error = freezed,
   }) {
     return _then(_$LibraryStateImpl(
       wishList: null == wishList
@@ -96,6 +105,10 @@ class __$$LibraryStateImplCopyWithImpl<$Res>
           ? _value._historyList
           : historyList // ignore: cast_nullable_to_non_nullable
               as List<BookEntity>,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -105,7 +118,8 @@ class __$$LibraryStateImplCopyWithImpl<$Res>
 class _$LibraryStateImpl implements _LibraryState {
   const _$LibraryStateImpl(
       {required final List<BookEntity> wishList,
-      required final List<BookEntity> historyList})
+      required final List<BookEntity> historyList,
+      required this.error})
       : _wishList = wishList,
         _historyList = historyList;
 
@@ -126,8 +140,11 @@ class _$LibraryStateImpl implements _LibraryState {
   }
 
   @override
+  final String? error;
+
+  @override
   String toString() {
-    return 'LibraryState(wishList: $wishList, historyList: $historyList)';
+    return 'LibraryState(wishList: $wishList, historyList: $historyList, error: $error)';
   }
 
   @override
@@ -137,14 +154,16 @@ class _$LibraryStateImpl implements _LibraryState {
             other is _$LibraryStateImpl &&
             const DeepCollectionEquality().equals(other._wishList, _wishList) &&
             const DeepCollectionEquality()
-                .equals(other._historyList, _historyList));
+                .equals(other._historyList, _historyList) &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_wishList),
-      const DeepCollectionEquality().hash(_historyList));
+      const DeepCollectionEquality().hash(_historyList),
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -156,12 +175,15 @@ class _$LibraryStateImpl implements _LibraryState {
 abstract class _LibraryState implements LibraryState {
   const factory _LibraryState(
       {required final List<BookEntity> wishList,
-      required final List<BookEntity> historyList}) = _$LibraryStateImpl;
+      required final List<BookEntity> historyList,
+      required final String? error}) = _$LibraryStateImpl;
 
   @override
   List<BookEntity> get wishList;
   @override
   List<BookEntity> get historyList;
+  @override
+  String? get error;
   @override
   @JsonKey(ignore: true)
   _$$LibraryStateImplCopyWith<_$LibraryStateImpl> get copyWith =>

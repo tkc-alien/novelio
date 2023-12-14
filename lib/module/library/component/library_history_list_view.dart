@@ -21,7 +21,7 @@ class LibraryHistoryListView extends ConsumerWidget {
           model: ref.watch(libraryNotifierProvider.notifier).getHistoryModel(index),
           onTap: () => ref.read(libraryNotifierProvider.notifier).onTapHistoryListTile(index),
         ),
-        childCount: 5,
+        childCount: ref.watch(libraryNotifierProvider.select((value) => value.historyList.length)),
       ),
     );
   }

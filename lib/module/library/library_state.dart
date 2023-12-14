@@ -12,5 +12,6 @@ class LibraryState with _$LibraryState {
   const factory LibraryState({
     required List<BookEntity> wishList,
     required List<BookEntity> historyList,
+    required String? error,
   }) = _LibraryState;
 }
